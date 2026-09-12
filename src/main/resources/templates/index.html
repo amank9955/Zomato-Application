@@ -1,0 +1,1824 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Zomato Clone - Bhopal</title>
+
+    <!-- GOOGLE FONT -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- EXTERNAL CSS -->
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        zomato
+    </div>
+
+
+    <div class="nav-center">
+
+        <div class="location">
+
+            <span class="location-icon">
+                📍
+            </span>
+
+            <span>
+                Bhopal
+            </span>
+
+        </div>
+
+
+        <div class="search-box">
+
+            🔍
+
+            <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search for restaurant, cuisine or dish"
+                    onkeyup="searchRestaurants()">
+
+        </div>
+
+    </div>
+
+
+    <div class="nav-buttons">
+
+        <!-- CART -->
+
+        <button type="button"
+                class="cart-btn"
+                onclick="openCart()">
+
+            🛒 Cart
+            (<span id="cartCount">0</span>)
+
+        </button>
+
+        <!-- ORDER HISTORY -->
+
+        <button type="button"
+                class="history-btn"
+                onclick="openOrderHistory()">
+
+            📦 Orders
+
+        </button>
+
+        <!-- LOGIN -->
+
+        <button type="button"
+                class="login-btn"
+                onclick="openLogin()">
+
+            Log in
+
+        </button>
+
+        <!-- SIGNUP -->
+
+        <button type="button"
+                class="signup-btn"
+                onclick="openSignup()">
+
+            Sign up
+
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <h1>
+        Discover the best food in Bhopal
+    </h1>
+
+
+    <p>
+        Explore restaurants, delicious food and amazing dining experiences
+    </p>
+
+
+    <div class="hero-search">
+
+        🔍
+
+        <input
+                type="text"
+                id="heroSearchInput"
+                placeholder="Search for restaurant, cuisine or dish"
+                onkeyup="searchRestaurants()">
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<div class="container">
+
+
+    <!-- =================================================
+         FOOD CATEGORY
+    ================================================== -->
+
+    <div class="section-title">
+
+        <h2>
+            What's on your mind?
+        </h2>
+
+        <p>
+            Discover food you love
+        </p>
+
+    </div>
+
+
+    <div class="categories">
+
+
+        <!-- PIZZA -->
+
+        <div class="category-card">
+
+            <div class="category-image">
+
+                <img
+                        src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=500"
+                        alt="Pizza">
+
+            </div>
+
+            <div class="category-name">
+                🍕 Pizza
+            </div>
+
+        </div>
+
+
+        <!-- BURGER -->
+
+        <div class="category-card">
+
+            <div class="category-image">
+
+                <img
+                        src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500"
+                        alt="Burger">
+
+            </div>
+
+            <div class="category-name">
+                🍔 Burger
+            </div>
+
+        </div>
+
+
+        <!-- INDIAN FOOD -->
+
+        <div class="category-card">
+
+            <div class="category-image">
+
+                <img
+                        src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=500"
+                        alt="Indian Food">
+
+            </div>
+
+            <div class="category-name">
+                🍛 Indian Food
+            </div>
+
+        </div>
+
+
+        <!-- BIRYANI -->
+
+        <div class="category-card">
+
+            <div class="category-image">
+
+                <img
+                        src="https://images.unsplash.com/photo-1630409351217-bc4fa6422075?auto=format&fit=crop&w=500"
+                        alt="Biryani">
+
+            </div>
+
+            <div class="category-name">
+                🍗 Biryani
+            </div>
+
+        </div>
+
+
+        <!-- COFFEE -->
+
+        <div class="category-card">
+
+            <div class="category-image">
+
+                <img
+                        src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=500"
+                        alt="Coffee">
+
+            </div>
+
+            <div class="category-name">
+                ☕ Coffee
+            </div>
+
+        </div>
+
+
+        <!-- DESSERT -->
+
+        <div class="category-card">
+
+            <div class="category-image">
+
+                <img
+                        src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=500"
+                        alt="Desserts">
+
+            </div>
+
+            <div class="category-name">
+                🍰 Desserts
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         RESTAURANT TITLE
+    ================================================== -->
+
+    <div class="section-title">
+
+        <h2>
+            Popular Restaurants in Bhopal
+        </h2>
+
+        <p>
+            Discover amazing restaurants and delicious food near you
+        </p>
+
+    </div>
+
+
+    <!-- =================================================
+         RESTAURANT GRID
+    ================================================== -->
+
+    <div class="restaurant-grid"
+         id="restaurantGrid">
+
+
+        <div class="restaurant-card"
+
+             th:each="restaurant : ${restaurants}"
+
+             th:attr="
+             data-name=${restaurant.name},
+             data-cuisine=${restaurant.cuisine},
+             data-food=${restaurant.foodItems}">
+
+
+            <!-- RESTAURANT IMAGE -->
+
+            <div class="restaurant-image">
+
+                <img th:src="${restaurant.imageUrl}"
+                     th:alt="${restaurant.name}">
+
+
+                <div class="rating">
+
+                    ★
+
+                    <span th:text="${restaurant.rating}">
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESTAURANT INFO -->
+
+            <div class="restaurant-info">
+
+
+                <div class="restaurant-top">
+
+                    <h3 class="restaurant-name"
+                        th:text="${restaurant.name}">
+                    </h3>
+
+                </div>
+
+
+                <!-- CUISINE -->
+
+                <div class="cuisine"
+                     th:text="${restaurant.cuisine}">
+                </div>
+
+
+                <!-- POPULAR FOOD -->
+
+                <div class="popular-food">
+
+                    <strong>
+                        Popular:
+                    </strong>
+
+                    <span th:text="${restaurant.foodItems}">
+                    </span>
+
+                </div>
+
+
+                <!-- RESTAURANT BOTTOM -->
+
+                <div class="restaurant-bottom">
+
+                    <div class="address">
+
+                        📍
+
+                        <span th:text="${restaurant.address}">
+                        </span>
+
+                    </div>
+
+
+                    <div class="price"
+                         th:text="${restaurant.priceRange}">
+                    </div>
+
+                </div>
+
+
+                <!-- VIEW MENU -->
+
+                <button type="button"
+                        class="view-menu-btn"
+
+                        th:attr="
+                        data-name=${restaurant.name},
+                        data-cuisine=${restaurant.cuisine},
+                        data-food=${restaurant.foodItems},
+                        data-address=${restaurant.address},
+                        data-price=${restaurant.priceRange}"
+
+                        onclick="openMenu(this)">
+
+                    View Menu
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MENU MODAL
+===================================================== -->
+
+<div class="modal"
+     id="menuModal">
+
+
+    <div class="modal-content">
+
+
+        <span class="close"
+              onclick="closeMenu()">
+
+            &times;
+
+        </span>
+
+
+        <h2 class="modal-title"
+            id="modalRestaurantName">
+        </h2>
+
+
+        <p class="modal-cuisine"
+           id="modalCuisine">
+        </p>
+
+
+        <hr style="margin-bottom:20px;">
+
+
+        <h3 class="menu-heading">
+            Popular Menu
+        </h3>
+
+
+        <!-- MENU ITEMS -->
+
+        <div id="menuItems">
+        </div>
+
+
+        <!-- RESTAURANT DETAILS -->
+
+        <div style="margin-top:25px;">
+
+            <p style="margin-bottom:8px; color:#666;">
+
+                📍
+
+                <span id="modalAddress">
+                </span>
+
+            </p>
+
+
+            <p style="font-weight:600;">
+
+                💰
+
+                <span id="modalPrice">
+                </span>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     CART MODAL
+===================================================== -->
+
+<div class="modal"
+     id="cartModal">
+
+
+    <div class="modal-content">
+
+
+        <!-- CLOSE -->
+
+        <span class="close"
+              onclick="closeCart()">
+
+            &times;
+
+        </span>
+
+
+        <!-- CART TITLE -->
+
+        <h2 class="modal-title">
+
+            🛒 Your Cart
+
+        </h2>
+
+
+        <p class="modal-cuisine">
+
+            Your selected food items
+
+        </p>
+
+
+        <hr style="margin-bottom:20px;">
+
+
+        <!-- CART ITEMS -->
+
+        <div id="cartItems">
+        </div>
+
+
+        <!-- =================================================
+             CART TOTAL
+        ================================================== -->
+
+        <div class="cart-total">
+
+            <span>
+                Total
+            </span>
+
+
+            <span>
+
+                ₹<span id="cartTotal">0</span>
+
+            </span>
+
+        </div>
+
+
+        <!-- =================================================
+             CHECKOUT BUTTON
+        ================================================== -->
+        <button type="button"
+                onclick="checkout()"
+                style="display:block !important;
+               width:100% !important;
+               margin-top:15px !important;
+               padding:14px 20px !important;
+               background:#e23744 !important;
+               color:white !important;
+               border:none !important;
+               border-radius:8px !important;
+               font-size:16px !important;
+               font-weight:600 !important;
+               cursor:pointer !important;
+               text-align:center !important;">
+            Proceed to Checkout
+        </button>
+
+
+    </div> <!-- IMPORTANT: CLOSE modal-content -->
+
+</div> <!-- IMPORTANT: CLOSE cartModal -->
+<!-- CHECKOUT MODAL -->
+
+<div class="modal" id="checkoutModal">
+
+    <div class="modal-content">
+
+        <span class="close"
+              onclick="closeCheckout()">
+            &times;
+        </span>
+
+        <h2 class="modal-title">
+            🛍️ Checkout
+        </h2>
+
+        <p class="modal-cuisine">
+            Enter your delivery details
+        </p>
+
+        <hr style="margin-bottom:20px;">
+
+        <label>Full Name</label>
+
+        <input type="text"
+               id="customerName"
+               placeholder="Enter your name"
+               style="width:100%;
+                      padding:12px;
+                      margin:8px 0 15px;
+                      border:1px solid #ddd;
+                      border-radius:8px;">
+
+
+        <label>Delivery Address</label>
+
+        <textarea id="customerAddress"
+                  placeholder="Enter your complete address"
+                  rows="3"
+                  style="width:100%;
+                         padding:12px;
+                         margin:8px 0 15px;
+                         border:1px solid #ddd;
+                         border-radius:8px;"></textarea>
+
+
+        <label>Phone Number</label>
+
+        <input type="tel"
+               id="customerPhone"
+               placeholder="Enter phone number"
+               style="width:100%;
+                      padding:12px;
+                      margin:8px 0 15px;
+                      border:1px solid #ddd;
+                      border-radius:8px;">
+
+
+        <label>Payment Method</label>
+
+        <select id="paymentMethod"
+                style="width:100%;
+                       padding:12px;
+                       margin:8px 0 20px;
+                       border:1px solid #ddd;
+                       border-radius:8px;">
+
+            <option value="">
+                Select payment method
+            </option>
+
+            <option value="Cash on Delivery">
+                Cash on Delivery
+            </option>
+
+            <option value="UPI">
+                UPI
+            </option>
+
+            <option value="Card">
+                Credit / Debit Card
+            </option>
+
+        </select>
+
+
+        <div class="cart-total">
+
+            <span>Total</span>
+
+            <span>
+                ₹<span id="checkoutTotal">0</span>
+            </span>
+
+        </div>
+
+
+        <button type="button"
+                onclick="placeOrder()"
+                style="display:block;
+                       width:100%;
+                       margin-top:15px;
+                       padding:14px;
+                       background:#e23744;
+                       color:white;
+                       border:none;
+                       border-radius:8px;
+                       font-size:16px;
+                       font-weight:600;
+                       cursor:pointer;">
+
+            Place Order
+
+        </button>
+
+    </div>
+
+</div>
+<!-- =====================================================
+     ORDER HISTORY MODAL
+===================================================== -->
+
+<div class="modal" id="orderHistoryModal">
+
+    <div class="modal-content">
+
+        <span class="close"
+              onclick="closeOrderHistory()">
+            &times;
+        </span>
+
+        <h2 class="modal-title">
+            📦 Order History
+        </h2>
+
+        <p class="modal-cuisine">
+            Your previous orders
+        </p>
+
+        <hr style="margin-bottom:20px;">
+
+        <div id="orderHistoryItems">
+
+            <div class="empty-cart">
+
+                <h3>
+                    No orders yet 📦
+                </h3>
+
+                <p style="margin-top:10px;">
+                    Your orders will appear here.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- =====================================================
+     LOGIN MODAL
+===================================================== -->
+
+<div class="modal" id="loginModal">
+
+    <div class="modal-content">
+
+        <span class="close"
+              onclick="closeLogin()">
+            &times;
+        </span>
+
+        <h2 class="modal-title">
+            👤 Login
+        </h2>
+
+        <p class="modal-cuisine">
+            Login to your Zomato account
+        </p>
+
+        <hr style="margin-bottom:20px;">
+
+
+        <label>
+            Email
+        </label>
+
+        <input
+                type="email"
+                id="loginEmail"
+                placeholder="Enter your email"
+                style="width:100%;
+                       padding:12px;
+                       margin:8px 0 15px;
+                       border:1px solid #ddd;
+                       border-radius:8px;">
+
+
+        <label>
+            Password
+        </label>
+
+        <input
+                type="password"
+                id="loginPassword"
+                placeholder="Enter your password"
+                style="width:100%;
+                       padding:12px;
+                       margin:8px 0 20px;
+                       border:1px solid #ddd;
+                       border-radius:8px;">
+
+
+        <button
+                type="button"
+                onclick="loginUser()"
+                style="display:block;
+                       width:100%;
+                       padding:14px;
+                       background:#e23744;
+                       color:white;
+                       border:none;
+                       border-radius:8px;
+                       font-size:16px;
+                       font-weight:600;
+                       cursor:pointer;">
+
+            Login
+
+        </button>
+
+    </div>
+
+</div>
+<!-- =====================================================
+     SIGNUP MODAL
+===================================================== -->
+
+<div class="modal" id="signupModal">
+
+    <div class="modal-content">
+
+        <span class="close"
+              onclick="closeSignup()">
+            &times;
+        </span>
+
+        <h2 class="modal-title">
+            📝 Sign Up
+        </h2>
+
+        <p class="modal-cuisine">
+            Create your Zomato account
+        </p>
+
+        <hr style="margin-bottom:20px;">
+
+        <label>
+            Full Name
+        </label>
+
+        <input type="text"
+               id="signupName"
+               placeholder="Enter your name"
+               style="width:100%;
+                      padding:12px;
+                      margin:8px 0 15px;
+                      border:1px solid #ddd;
+                      border-radius:8px;">
+
+
+        <label>
+            Email
+        </label>
+
+        <input type="email"
+               id="signupEmail"
+               placeholder="Enter your email"
+               style="width:100%;
+                      padding:12px;
+                      margin:8px 0 15px;
+                      border:1px solid #ddd;
+                      border-radius:8px;">
+
+
+        <label>
+            Password
+        </label>
+
+        <input type="password"
+               id="signupPassword"
+               placeholder="Create a password"
+               style="width:100%;
+                      padding:12px;
+                      margin:8px 0 20px;
+                      border:1px solid #ddd;
+                      border-radius:8px;">
+
+
+        <button type="button"
+                onclick="signupUser()"
+                style="display:block;
+                       width:100%;
+                       padding:14px;
+                       background:#e23744;
+                       color:white;
+                       border:none;
+                       border-radius:8px;
+                       font-size:16px;
+                       font-weight:600;
+                       cursor:pointer;">
+
+            Create Account
+
+        </button>
+
+    </div>
+
+</div>
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="footer-content">
+
+
+        <div class="footer-logo">
+
+            zomato
+
+        </div>
+
+
+        <div class="footer-text">
+
+            © 2026 Zomato Clone | Made with Spring Boot & MySQL
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+    /* =====================================================
+       CART
+    ===================================================== */
+
+    let cart = [];
+
+
+
+    /* =====================================================
+       OPEN MENU
+    ===================================================== */
+
+    function openMenu(button) {
+
+        const name = button.dataset.name;
+
+        const cuisine = button.dataset.cuisine;
+
+        const food = button.dataset.food;
+
+        const address = button.dataset.address;
+
+        const price = button.dataset.price;
+
+
+        document.getElementById("modalRestaurantName").innerText =
+            name;
+
+
+        document.getElementById("modalCuisine").innerText =
+            cuisine;
+
+
+        document.getElementById("modalAddress").innerText =
+            address;
+
+
+        document.getElementById("modalPrice").innerText =
+            price;
+
+
+        const foodItems = food.split(",");
+
+
+        let menuHTML = "";
+
+
+        foodItems.forEach(function(item, index) {
+
+            const itemName = item.trim();
+
+
+            const itemPrice =
+                120 + (index * 40);
+
+
+            menuHTML += `
+
+            <div class="menu-item">
+
+                <div class="menu-item-left">
+
+                    <div class="menu-item-name">
+                        ${itemName}
+                    </div>
+
+
+                    <div class="menu-description">
+                        Delicious freshly prepared dish
+                    </div>
+
+                </div>
+
+
+                <div class="menu-item-right">
+
+                    <div class="menu-price">
+                        ₹${itemPrice}
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="add-cart-btn"
+                        onclick="addToCart('${itemName}', ${itemPrice})">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+        });
+
+
+        document.getElementById("menuItems").innerHTML =
+            menuHTML;
+
+
+        document.getElementById("menuModal").style.display =
+            "flex";
+
+    }
+
+
+
+    /* =====================================================
+       CLOSE MENU
+    ===================================================== */
+
+    function closeMenu() {
+
+        document.getElementById("menuModal").style.display =
+            "none";
+
+    }
+
+
+
+    /* =====================================================
+       ADD TO CART
+    ===================================================== */
+
+    function addToCart(name, price) {
+
+
+        const existingItem =
+            cart.find(function(item) {
+
+                return item.name === name;
+
+            });
+
+
+        if (existingItem) {
+
+            existingItem.quantity++;
+
+        }
+
+        else {
+
+            cart.push({
+
+                name: name,
+
+                price: price,
+
+                quantity: 1
+
+            });
+
+        }
+
+
+        updateCartCount();
+
+        updateCartTotal();
+
+
+        alert(name + " added to cart!");
+
+    }
+
+
+
+    /* =====================================================
+       UPDATE CART COUNT
+    ===================================================== */
+
+    function updateCartCount() {
+
+
+        let totalItems = 0;
+
+
+        cart.forEach(function(item) {
+
+            totalItems += item.quantity;
+
+        });
+
+
+        document.getElementById("cartCount").innerText =
+            totalItems;
+
+    }
+
+
+
+    /* =====================================================
+       CALCULATE CART TOTAL
+    ===================================================== */
+
+    function calculateCartTotal() {
+
+
+        let total = 0;
+
+
+        cart.forEach(function(item) {
+
+            total +=
+                Number(item.price) *
+                Number(item.quantity);
+
+        });
+
+
+        return total;
+
+    }
+
+
+
+    /* =====================================================
+       UPDATE CART TOTAL
+    ===================================================== */
+
+    function updateCartTotal() {
+
+
+        const total =
+            calculateCartTotal();
+
+
+        const totalElement =
+            document.getElementById("cartTotal");
+
+
+        if (totalElement) {
+
+            totalElement.innerText =
+                total;
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       OPEN CART
+    ===================================================== */
+
+    function openCart() {
+
+
+        const cartItemsContainer =
+            document.getElementById("cartItems");
+
+
+        let cartHTML = "";
+
+
+        /* EMPTY CART */
+
+        if (cart.length === 0) {
+
+
+            cartHTML = `
+
+            <div class="empty-cart">
+
+                <h3>
+                    Your cart is empty 🛒
+                </h3>
+
+
+                <p style="margin-top:10px;">
+
+                    Add some delicious food!
+
+                </p>
+
+            </div>
+
+        `;
+
+        }
+
+
+        /* CART HAS ITEMS */
+
+        else {
+
+
+            cart.forEach(function(item, index) {
+
+
+                const itemTotal =
+                    Number(item.price) *
+                    Number(item.quantity);
+
+
+                cartHTML += `
+
+                <div class="menu-item">
+
+
+                    <div class="menu-item-left">
+
+                        <div class="menu-item-name">
+
+                            ${item.name}
+
+                        </div>
+
+
+                        <div class="menu-description">
+
+                            ₹${item.price}
+                            ×
+                            ${item.quantity}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="menu-item-right">
+
+
+                        <div class="menu-price">
+
+                            ₹${itemTotal}
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="add-cart-btn"
+                            onclick="removeFromCart(${index})">
+
+                            Remove
+
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+            `;
+
+            });
+
+        }
+
+
+        /* SHOW CART ITEMS */
+
+        cartItemsContainer.innerHTML =
+            cartHTML;
+
+
+        /* UPDATE TOTAL */
+
+        updateCartTotal();
+
+
+        /* OPEN CART */
+
+        document.getElementById("cartModal").style.display =
+            "flex";
+
+    }
+
+
+
+    /* =====================================================
+       CLOSE CART
+    ===================================================== */
+
+    function closeCart() {
+
+        document.getElementById("cartModal").style.display =
+            "none";
+
+    }
+
+
+
+    /* =====================================================
+       REMOVE FROM CART
+    ===================================================== */
+
+    function removeFromCart(index) {
+
+
+        const item =
+            cart[index];
+
+
+        if (item.quantity > 1) {
+
+            item.quantity--;
+
+        }
+
+        else {
+
+            cart.splice(index, 1);
+
+        }
+
+
+        updateCartCount();
+
+        updateCartTotal();
+
+
+        openCart();
+
+    }
+
+
+
+    /* =====================================================
+       CHECKOUT
+    ===================================================== */
+
+    function checkout() {
+
+        if (cart.length === 0) {
+
+            alert("Your cart is empty!");
+
+            return;
+        }
+
+        closeCart();
+
+
+        document.getElementById("checkoutTotal").innerText =
+            calculateCartTotal();
+
+        document.getElementById("checkoutModal").style.display =
+            "flex";
+    }
+    /* =====================================================
+   LOGIN
+===================================================== */
+
+    function openLogin() {
+
+        document.getElementById("loginModal").style.display =
+            "flex";
+    }
+
+
+    function closeLogin() {
+
+        document.getElementById("loginModal").style.display =
+            "none";
+    }
+
+
+    function loginUser() {
+
+        const email =
+            document.getElementById("loginEmail").value.trim();
+
+        const password =
+            document.getElementById("loginPassword").value.trim();
+
+
+        if (email === "") {
+
+            alert("Please enter your email.");
+
+            return;
+        }
+
+
+        if (password === "") {
+
+            alert("Please enter your password.");
+
+            return;
+        }
+
+
+        alert("Login successful! 🎉");
+
+        closeLogin();
+    }
+    function openSignup() {
+        document.getElementById("signupModal").style.display = "flex";
+    }
+
+    function closeSignup() {
+        document.getElementById("signupModal").style.display = "none";
+    }
+
+    function signupUser() {
+        const name =
+            document.getElementById("signupName").value.trim();
+
+        const email =
+            document.getElementById("signupEmail").value.trim();
+
+        const password =
+            document.getElementById("signupPassword").value.trim();
+
+        if (name === "") {
+            alert("Please enter your name.");
+            return;
+        }
+
+        if (email === "") {
+            alert("Please enter your email.");
+            return;
+        }
+
+        if (password === "") {
+            alert("Please enter your password.");
+            return;
+        }
+
+        alert("Account created successfully! 🎉");
+
+        closeSignup();
+
+        document.getElementById("signupName").value = "";
+        document.getElementById("signupEmail").value = "";
+        document.getElementById("signupPassword").value = "";
+    }
+    function closeCheckout() {
+
+        document.getElementById("checkoutModal").style.display =
+            "none";
+    }
+    function openOrderHistory() {
+
+        const historyModal =
+            document.getElementById("orderHistoryModal");
+
+        const historyContainer =
+            document.getElementById("orderHistoryItems");
+
+        const orders =
+            JSON.parse(localStorage.getItem("orders")) || [];
+
+        if (orders.length === 0) {
+
+            historyContainer.innerHTML = `
+            <div class="empty-cart">
+                <h3>No orders yet 📦</h3>
+                <p style="margin-top:10px;">
+                    Your orders will appear here.
+                </p>
+            </div>
+        `;
+
+        } else {
+
+            let historyHTML = "";
+
+            orders.slice().reverse().forEach(function(order, index) {
+
+                let itemsHTML = "";
+
+                order.items.forEach(function(item) {
+
+                    const itemTotal =
+                        Number(item.price) * Number(item.quantity);
+
+                    itemsHTML += `
+                    <div style="margin:6px 0;">
+                        ${item.name} × ${item.quantity}
+                        — ₹${itemTotal}
+                    </div>
+                `;
+                });
+
+                historyHTML += `
+                <div style="
+                    border:1px solid #eee;
+                    border-radius:10px;
+                    padding:15px;
+                    margin-bottom:15px;
+                ">
+
+                    <h3>Order ${orders.length - index}</h3>
+
+                    <div style="
+                        font-size:13px;
+                        color:#777;
+                        margin:5px 0 10px;
+                    ">
+                        ${order.date}
+                    </div>
+
+                    ${itemsHTML}
+
+                    <div style="margin-top:10px;">
+                        <strong>Payment:</strong>
+                        ${order.payment}
+                    </div>
+
+                    <div>
+                        <strong>Total:</strong>
+                        ₹${order.total}
+                    </div>
+
+                    <div>
+                        <strong>Address:</strong>
+                        ${order.address}
+                    </div>
+
+                </div>
+            `;
+            });
+
+            historyContainer.innerHTML = historyHTML;
+        }
+
+        historyModal.style.display = "flex";
+    }
+    function closeOrderHistory() {
+
+        document.getElementById("orderHistoryModal").style.display =
+            "none";
+    }
+
+    function placeOrder() {
+
+        const name =
+            document.getElementById("customerName").value.trim();
+
+        const address =
+            document.getElementById("customerAddress").value.trim();
+
+        const phone =
+            document.getElementById("customerPhone").value.trim();
+
+        const payment =
+            document.getElementById("paymentMethod").value;
+
+
+        if (name === "") {
+
+            alert("Please enter your name.");
+
+            return;
+        }
+
+
+        if (address === "") {
+
+            alert("Please enter your delivery address.");
+
+            return;
+        }
+
+
+        if (phone === "") {
+
+            alert("Please enter your phone number.");
+
+            return;
+        }
+
+
+        if (payment === "") {
+
+            alert("Please select a payment method.");
+
+            return;
+        }
+        const order = {
+            name: name,
+            address: address,
+            phone: phone,
+            payment: payment,
+            total: calculateCartTotal(),
+            date: new Date().toLocaleString(),
+
+            items: cart.map(function(item) {
+                return {
+                    name: item.name,
+                    price: item.price,
+                    quantity: item.quantity
+                };
+            })
+        };
+
+
+        let orders =
+            JSON.parse(localStorage.getItem("orders")) || [];
+
+        orders.push(order);
+
+        localStorage.setItem(
+            "orders",
+            JSON.stringify(orders)
+        );
+
+
+        const total =
+            calculateCartTotal();
+
+
+        alert(
+            "Order placed successfully! 🎉\n\n" +
+            "Name: " + name +
+            "\nPayment: " + payment +
+            "\nTotal: ₹" + total
+        );
+
+
+        cart = [];
+
+        updateCartCount();
+
+        updateCartTotal();
+
+
+        document.getElementById("cartItems").innerHTML = `
+        <div class="empty-cart">
+            <h3>Your cart is empty 🛒</h3>
+            <p style="margin-top:10px;">
+                Add some delicious food!
+            </p>
+        </div>
+    `;
+
+
+        document.getElementById("customerName").value = "";
+        document.getElementById("customerAddress").value = "";
+        document.getElementById("customerPhone").value = "";
+        document.getElementById("paymentMethod").value = "";
+
+
+        closeCheckout();
+    }
+
+
+    /* =====================================================
+       CLOSE MODAL WHEN CLICKING OUTSIDE
+    ===================================================== */
+
+    window.onclick = function(event) {
+
+
+        const menuModal =
+            document.getElementById("menuModal");
+
+
+        const cartModal =
+            document.getElementById("cartModal");
+
+
+        if (event.target === menuModal) {
+
+            menuModal.style.display =
+                "none";
+
+        }
+
+
+        if (event.target === cartModal) {
+
+            cartModal.style.display =
+                "none";
+
+        }
+
+    };
+
+
+
+    /* =====================================================
+       SEARCH RESTAURANTS
+    ===================================================== */
+
+    function searchRestaurants() {
+
+
+        const navbarSearch =
+            document.getElementById("searchInput");
+
+
+        const heroSearch =
+            document.getElementById("heroSearchInput");
+
+
+        let searchValue = "";
+
+
+        if (
+            navbarSearch &&
+            navbarSearch.value.trim() !== ""
+        ) {
+
+            searchValue =
+                navbarSearch.value.toLowerCase();
+
+        }
+
+
+        else if (
+            heroSearch &&
+            heroSearch.value.trim() !== ""
+        ) {
+
+            searchValue =
+                heroSearch.value.toLowerCase();
+
+        }
+
+
+        const cards =
+            document.querySelectorAll(".restaurant-card");
+
+
+        cards.forEach(function(card) {
+
+
+            const name =
+                (card.dataset.name || "")
+                    .toLowerCase();
+
+
+            const cuisine =
+                (card.dataset.cuisine || "")
+                    .toLowerCase();
+
+
+            const food =
+                (card.dataset.food || "")
+                    .toLowerCase();
+
+
+            if (
+
+                name.includes(searchValue) ||
+
+                cuisine.includes(searchValue) ||
+
+                food.includes(searchValue)
+
+            ) {
+
+                card.style.display =
+                    "block";
+
+            }
+
+            else {
+
+                card.style.display =
+                    "none";
+
+            }
+
+        });
+
+    }
+
+</script>
+
+
+</body>
+
+</html>
